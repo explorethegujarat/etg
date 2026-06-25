@@ -25,8 +25,8 @@ function Page() {
   return (
     <>
       <PageHero eyebrow="Cab Booking" title="Drive across Gujarat in comfort" subtitle="Verified vehicles, courteous drivers and transparent pricing — anywhere in Gujarat." />
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-12">
+      <section className="py-12 sm:py-20 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-12">
           <div>
             <div className="grid gap-5">
               {fleet.map((f) => (
@@ -50,7 +50,7 @@ function Page() {
               </ul>
             </div>
           </div>
-          <aside className="rounded-2xl border border-border bg-card shadow-card p-8 lg:sticky lg:top-24 self-start">
+          <aside className="rounded-2xl border border-border bg-card shadow-card p-6 sm:p-8 lg:sticky lg:top-24 self-start">
             <span className="text-[11px] tracking-[0.3em] uppercase text-gold-deep">Cab Enquiry</span>
             <h3 className="mt-2 font-display text-2xl text-ink">Book Your Ride</h3>
             <div className="mt-6">

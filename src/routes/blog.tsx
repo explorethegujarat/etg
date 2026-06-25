@@ -51,7 +51,7 @@ function Page() {
       <PageHero eyebrow="Travel Journal" title="Gujarat, told by locals" subtitle="Guides, tips and stories — written by the same experts who craft your trip." />
       
       <section className="py-12 bg-secondary/20 border-b border-border/40">
-        <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row gap-6 md:items-center md:justify-between">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 flex flex-col md:flex-row gap-6 md:items-center md:justify-between">
           {/* Categories */}
           <div className="flex flex-wrap gap-2 order-2 md:order-1">
             {categories.map((cat) => (
@@ -83,8 +83,8 @@ function Page() {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-12 sm:py-20 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           {filteredPosts.length === 0 ? (
             <div className="text-center py-16 max-w-md mx-auto">
               <div className="h-16 w-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 text-gold-deep">

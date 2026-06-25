@@ -29,8 +29,8 @@ function Page() {
   return (
     <>
       <PageHero eyebrow="Gir Safari" title="Meet the King of Gujarat" subtitle="Confirmed booking for Gir Jungle Safari and Devaliya Safari — the only home of the Asiatic Lion." />
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-12 items-start">
+      <section className="py-12 sm:py-20 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-10">
             <div className="overflow-hidden rounded-2xl shadow-royal aspect-[4/3]">
               <img src={girImg} alt="Asiatic lion in Gir forest" loading="lazy" className="h-full w-full object-cover" />
@@ -67,7 +67,7 @@ function Page() {
             </div>
           </div>
 
-          <aside className="rounded-2xl border border-border bg-card shadow-card p-8 lg:sticky lg:top-24">
+          <aside className="rounded-2xl border border-border bg-card shadow-card p-6 sm:p-8 lg:sticky lg:top-24">
             <span className="text-[11px] tracking-[0.3em] uppercase text-gold-deep">Booking Enquiry</span>
             <h3 className="mt-2 font-display text-2xl text-ink">Reserve Your Safari</h3>
             <p className="mt-2 text-sm text-muted-foreground">Share details — we confirm availability within 24 hours.</p>

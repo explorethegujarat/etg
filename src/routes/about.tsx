@@ -28,8 +28,8 @@ function Page() {
   return (
     <>
       <PageHero eyebrow="About Us" title="Crafting Gujarat journeys, with heart" />
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-3xl px-6 text-center">
+      <section className="py-12 sm:py-20 bg-background">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
           <p className="text-lg leading-relaxed text-foreground/80">
             <span className="font-display text-2xl text-ink block mb-4">Explore The Gujarat</span>
             is dedicated to creating memorable Gujarat travel experiences by combining local expertise, trusted services and personalised hospitality. From the roar of the Asiatic Lion in Gir to the silent moon over the White Rann, we design journeys that feel both regal and effortlessly easy.
@@ -40,8 +40,8 @@ function Page() {
           </p>
         </div>
       </section>
-      <section className="py-20 bg-secondary/40">
-        <div className="mx-auto max-w-7xl px-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="py-12 sm:py-20 bg-secondary/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {values.map((v) => (
             <div key={v.t} className="p-7 rounded-xl bg-card shadow-card border border-border">
               <div className="h-12 w-12 grid place-items-center rounded-lg bg-gradient-gold text-primary"><v.icon className="size-5" /></div>
@@ -51,8 +51,8 @@ function Page() {
           ))}
         </div>
       </section>
-      <section className="py-20 bg-primary text-primary-foreground text-center">
-        <div className="mx-auto max-w-3xl px-6">
+      <section className="py-12 sm:py-20 bg-primary text-primary-foreground text-center">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h2 className="font-display text-3xl lg:text-4xl">Let's plan your royal Gujarat story</h2>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild variant="gold" size="lg"><Link to="/contact">Start Planning</Link></Button>

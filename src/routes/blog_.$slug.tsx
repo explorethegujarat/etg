@@ -89,7 +89,7 @@ function BlogPostPage() {
   return (
     <>
       <div className="bg-background pt-8 pb-4 border-b border-border/40">
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mb-4">
             <Link to="/" className="hover:text-gold transition">Home</Link>
             <span>/</span>
@@ -105,7 +105,7 @@ function BlogPostPage() {
       </div>
 
       <article className="py-12 sm:py-20 bg-background">
-        <div className="mx-auto max-w-4xl px-6">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
             <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wider bg-gold/10 text-gold-deep uppercase mb-4">
@@ -213,7 +213,7 @@ function BlogPostPage() {
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
         <section className="py-20 bg-secondary/30 border-t border-border/40">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6">
             <h2 className="font-display text-3xl text-ink text-center mb-12">
               Related Articles & Guides
             </h2>
