@@ -19,8 +19,8 @@ function Page() {
   return (
     <>
       <PageHero eyebrow="Destinations" title="The Royal Map of Gujarat" subtitle="From the roar of the Asiatic lion to the silence of a white desert moon — six landscapes that define Gujarat." />
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-7xl px-6 grid gap-12">
+      <section className="py-12 sm:py-20 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 grid gap-12">
           {destinations.map((d, i) => (
             <article key={d.slug} className={`grid lg:grid-cols-2 gap-10 items-center ${i % 2 ? "lg:[direction:rtl]" : ""}`}>
               <div className="overflow-hidden rounded-2xl shadow-royal aspect-[4/3] [direction:ltr]">

@@ -111,7 +111,7 @@ function Index() {
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-hero" />
-        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-32 lg:pt-36 lg:pb-44">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 pt-20 pb-28 lg:pt-36 lg:pb-44">
           <div className="max-w-3xl text-primary-foreground">
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-gold" />
@@ -141,8 +141,8 @@ function Index() {
       </section>
 
       {/* DESTINATIONS */}
-      <section className="py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-12 sm:py-24 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeader eyebrow="Popular Destinations" title="Where Gujarat Reveals Itself" subtitle="Six unmissable places, each a chapter in Gujarat's grand royal story." />
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {destinations.map((d) => (
@@ -165,8 +165,8 @@ function Index() {
       </section>
 
       {/* SERVICES */}
-      <section className="py-24 bg-gradient-royal text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-12 sm:py-24 bg-gradient-royal text-primary-foreground">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto">
             <div className="flex items-center justify-center gap-3">
               <span className="h-px w-8 bg-gold" />
@@ -188,8 +188,8 @@ function Index() {
       </section>
 
       {/* FEATURED PACKAGES */}
-      <section className="py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-12 sm:py-24 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeader eyebrow="Featured Packages" title="Signature Gujarat Itineraries" subtitle="Hand-picked journeys crafted for wildlife lovers, families, couples and weekend escapees." />
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {packages.slice(0, 6).map((p) => (
@@ -221,8 +221,8 @@ function Index() {
       </section>
 
       {/* WHY US */}
-      <section className="py-24 bg-secondary/40">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-12 sm:py-24 bg-secondary/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeader eyebrow="Why Choose Us" title="Explore The Gujarat Promise" />
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {trust.map((t) => (
@@ -236,8 +236,8 @@ function Index() {
       </section>
 
       {/* REVIEWS */}
-      <section className="py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-12 sm:py-24 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeader eyebrow="Guest Stories" title="Loved by travellers across the world" />
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {reviews.map((r) => (
@@ -257,8 +257,8 @@ function Index() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-secondary/40">
-        <div className="mx-auto max-w-3xl px-6">
+      <section className="py-12 sm:py-24 bg-secondary/40">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <SectionHeader eyebrow="FAQ" title="Questions, gracefully answered" />
           <Accordion type="single" collapsible className="mt-12">
             {faqs.map((f, i) => (
@@ -272,8 +272,8 @@ function Index() {
       </section>
 
       {/* CONTACT CTA */}
-      <section className="py-24 bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-5xl px-6 text-center">
+      <section className="py-12 sm:py-24 bg-primary text-primary-foreground">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 text-center">
           <span className="text-[11px] tracking-[0.3em] uppercase text-gold">Begin your journey</span>
           <h2 className="mt-4 font-display text-4xl lg:text-5xl">Ready to discover the Royal Gujarat?</h2>
           <p className="mt-5 text-primary-foreground/75 max-w-2xl mx-auto">Speak with a Gujarat travel expert today. We'll craft an itinerary worthy of royalty — at a price that surprises you.</p>

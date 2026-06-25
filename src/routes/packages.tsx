@@ -24,8 +24,8 @@ function Page() {
   return (
     <>
       <PageHero eyebrow="Tour Packages" title="Signature Gujarat Itineraries" subtitle="Hand-crafted journeys for wildlife, heritage, romance and rest." />
-      <section className="py-16 bg-background">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-12 sm:py-16 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {CATEGORIES.map((c) => (
               <button
