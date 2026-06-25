@@ -2,9 +2,9 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { getBlogPosts, saveBlogPost, deleteBlogPost, BlogPost } from "@/lib/blogService";
 import { Button } from "@/components/ui/button";
-import { 
-  Key, Lock, Plus, Trash2, Edit, LogOut, FileText, ArrowLeft, 
-  Tag, Calendar, User, Clock, Image as ImageIcon, Eye, HelpCircle 
+import {
+  Key, Lock, Plus, Trash2, Edit, LogOut, FileText, ArrowLeft,
+  Tag, Calendar, User, Clock, Image as ImageIcon, Eye, HelpCircle
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -112,7 +112,7 @@ function AdminPage() {
     setTag(post.tag);
     setExcerpt(post.excerpt);
     setContent(post.content);
-    
+
     // Check if image is custom or preset
     const isPreset = PRESET_IMAGES.some((p) => p.url === post.img);
     if (isPreset) {
@@ -123,7 +123,7 @@ function AdminPage() {
       setUseCustomImg(true);
       setCustomImgUrl(post.img);
     }
-    
+
     setAuthor(post.author);
     setDate(post.date);
     setIsModalOpen(true);
@@ -132,19 +132,19 @@ function AdminPage() {
   // Handle Save
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!title.trim() || !excerpt.trim() || !content.trim() || !author.trim() || !date.trim()) {
       toast.error("Please fill in all fields.");
       return;
     }
 
     // Auto-generate slug
-    const generatedSlug = editingPost 
-      ? editingPost.id 
+    const generatedSlug = editingPost
+      ? editingPost.id
       : title
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/(^-|-$)/g, "");
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
 
     // Quick duplicate check (only on create)
     if (!editingPost && posts.some(p => p.id === generatedSlug)) {
@@ -204,7 +204,7 @@ function AdminPage() {
               Enter passcode to manage the Gujarat travel journal
             </p>
           </div>
-          
+
           <form onSubmit={handleLogin} className="p-8 space-y-6 bg-card">
             <div className="space-y-2">
               <label htmlFor="passcode" className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
@@ -223,11 +223,11 @@ function AdminPage() {
                 />
               </div>
             </div>
-            
+
             <Button type="submit" className="w-full bg-gradient-gold text-primary hover:opacity-90 font-semibold py-2.5">
               Authenticate
             </Button>
-            
+
             <div className="text-center">
               <Link to="/blog" className="text-xs text-gold-deep hover:underline">
                 Back to Travel Journal
@@ -252,7 +252,7 @@ function AdminPage() {
             </div>
             <h1 className="font-display text-3xl text-ink">Blog Management</h1>
           </div>
-          
+
           <div className="flex gap-3">
             <Link to="/blog">
               <Button variant="outline" className="border-border text-ink hover:bg-secondary">
@@ -311,7 +311,7 @@ function AdminPage() {
                 <Plus className="mr-2 h-4 w-4" /> Add New Article
               </Button>
             </div>
-            
+
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
@@ -388,7 +388,7 @@ function AdminPage() {
                   Provide interesting detailed guidelines about Gujarat destinations.
                 </p>
               </div>
-              <button 
+              <button
                 onClick={() => setIsModalOpen(false)}
                 className="h-8 w-8 rounded-lg flex items-center justify-center text-primary-foreground/80 hover:text-white hover:bg-white/10 transition"
               >
@@ -486,11 +486,10 @@ function AdminPage() {
                             type="button"
                             key={preset.name}
                             onClick={() => setSelectedImg(preset.url)}
-                            className={`aspect-[16/10] border-2 rounded overflow-hidden relative transition ${
-                              selectedImg === preset.url
-                                ? "border-gold"
-                                : "border-border/60 hover:border-border"
-                            }`}
+                            className={`aspect-[16/10] border-2 rounded overflow-hidden relative transition ${selectedImg === preset.url
+                              ? "border-gold"
+                              : "border-border/60 hover:border-border"
+                              }`}
                           >
                             <img src={preset.url} alt={preset.name} className="h-full w-full object-cover" />
                             <div className="absolute inset-x-0 bottom-0 bg-black/70 text-[8px] text-white text-center py-0.5 truncate">
@@ -585,16 +584,16 @@ Add horizontal divider lines with three dashes (---)"
 
               {/* Modal Footer Actions */}
               <div className="pt-4 border-t border-border flex justify-end gap-3 bg-card">
-                <Button 
-                  type="button" 
-                  onClick={() => setIsModalOpen(false)} 
-                  variant="outline" 
+                <Button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  variant="outline"
                   className="border-border text-ink hover:bg-secondary"
                 >
                   Cancel
                 </Button>
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   className="bg-gradient-gold text-primary hover:opacity-90 font-semibold px-6"
                 >
                   {editingPost ? "Save Changes" : "Publish Article"}
