@@ -93,12 +93,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       {
         rel: "icon",
-        href: "/logo.jpeg",
-        type: "image/jpeg",
+        href: "/logo.png",
+        type: "image/png",
       },
       {
         rel: "apple-touch-icon",
-        href: "/logo.jpeg",
+        href: "/logo.png",
       },
       {
         rel: "stylesheet",
