@@ -38,9 +38,9 @@ export function SiteFooter() {
         <div>
           <h4 className="font-display text-gold text-base mb-4">Reach Us</h4>
           <ul className="space-y-3 text-sm">
-            <li className="flex items-start gap-2"><Phone className="size-4 mt-0.5 text-gold" /><a href="tel:+918980200401">+91 8980 200 401</a></li>
-            <li className="flex items-start gap-2"><Mail className="size-4 mt-0.5 text-gold" /><a href="mailto:explorethegujarat@gmail.com">explorethegujarat@gmail.com</a></li>
-            <li className="flex items-start gap-2"><MapPin className="size-4 mt-0.5 text-gold" /><span>Shop no. 38, kailash complex, oppo. bus station, keshod - 362220</span></li>
+            <li className="flex items-start gap-2"><Phone className="size-4 mt-0.5 text-gold flex-shrink-0" /><a href="tel:+918980200401">+91 8980 200 401</a></li>
+            <li className="flex items-start gap-2"><Mail className="size-4 mt-0.5 text-gold flex-shrink-0" /><a href="mailto:explorethegujarat@gmail.com">explorethegujarat@gmail.com</a></li>
+            <li className="flex items-start gap-2"><MapPin className="size-4 mt-0.5 text-gold flex-shrink-0" /><span>Shop no. 38, kailash complex, oppo. bus station, keshod - 362220</span></li>
           </ul>
           <div className="flex gap-3 mt-5">
             <a href="https://www.instagram.com/explore_the_gujarat?igsh=MTQ1YzkyOTZpNjNvaQ==" aria-label="Instagram" className="h-9 w-9 grid place-items-center rounded-full border border-gold/40 text-gold hover:bg-gold hover:text-primary transition"><Instagram className="size-4" /></a>
