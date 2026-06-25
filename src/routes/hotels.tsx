@@ -22,8 +22,8 @@ export const Route = createFileRoute("/hotels")({
 });
 
 const hotels = [
-  { name: "Lion's Den Jungle Resort", city: "Gir / Sasan", stars: 5, img: girImg, blurb: "Premium safari resort with private cottages and infinity pool." },
-  { name: "Somnath Sagar Palace", city: "Somnath", stars: 5, img: somnathImg, blurb: "Sea-facing luxury rooms steps away from the temple aarti." },
+  { name: "Gir Pride Resort", city: "Gir / Sasan", stars: 5, img: girImg, blurb: "Premium safari resort with private cottages and infinity pool." },
+  { name: "Hotel Sukh Sagar", city: "Somnath", stars: 5, img: somnathImg, blurb: "Sea-facing luxury rooms steps away from the temple aarti." },
   { name: "Rann Royal Tents", city: "Kutch — Dhordo", stars: 5, img: kutchImg, blurb: "Curated luxury tent stay during Rann Utsav with cultural evenings." },
   { name: "Diu Beach Retreat", city: "Diu", stars: 4, img: diuImg, blurb: "Boutique seaside resort with private beach access and spa." },
   { name: "Saputara Hill Residency", city: "Saputara", stars: 4, img: saputaraImg, blurb: "Hill-top retreat with valley views and lake-side dining." },
@@ -36,8 +36,8 @@ function Page() {
   return (
     <>
       <PageHero eyebrow="Hotels & Resorts" title="Where Royalty Rests" subtitle="Verified luxury and heritage stays across every Gujarat destination — booked at our partner rates." />
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-7xl px-6 grid gap-8 md:grid-cols-2">
+      <section className="py-12 sm:py-20 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 grid gap-8 md:grid-cols-2">
           {hotels.map((h) => (
             <article key={h.name} className="rounded-2xl overflow-hidden border border-border bg-card shadow-card grid md:grid-cols-2">
               <div className="aspect-[4/3] md:aspect-auto"><img src={h.img} alt={h.name} loading="lazy" className="h-full w-full object-cover" /></div>
