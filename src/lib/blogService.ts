@@ -284,6 +284,18 @@ async function seedDefaultPosts() {
   }
 }
 
+function normalizeImgUrl(url: string): string {
+  if (!url) return url;
+  if (url.includes("lh3.googleusercontent.com/u/0/d/")) {
+    const fileId = url.split("/u/0/d/")[1];
+    if (fileId) {
+      const cleanId = fileId.split(/[?#]/)[0];
+      return `https://drive.google.com/uc?export=view&id=${cleanId}`;
+    }
+  }
+  return url;
+}
+
 export async function getBlogPosts(): Promise<BlogPost[]> {
   try {
     const { data, error } = await supabase
@@ -301,7 +313,10 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       return DEFAULT_POSTS;
     }
 
-    return data as BlogPost[];
+    return (data as BlogPost[]).map((post) => ({
+      ...post,
+      img: normalizeImgUrl(post.img),
+    }));
   } catch (e) {
     console.error("Failed to fetch blogs from Supabase", e);
     return DEFAULT_POSTS;
@@ -325,7 +340,11 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | undefi
       return DEFAULT_POSTS.find((p) => p.id === slug);
     }
 
-    return data as BlogPost;
+    const post = data as BlogPost;
+    return {
+      ...post,
+      img: normalizeImgUrl(post.img),
+    };
   } catch (e) {
     console.error("Failed to fetch blog by slug from Supabase", e);
     return DEFAULT_POSTS.find((p) => p.id === slug);
