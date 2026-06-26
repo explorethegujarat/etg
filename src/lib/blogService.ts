@@ -290,7 +290,13 @@ function normalizeImgUrl(url: string): string {
     const fileId = url.split("/u/0/d/")[1];
     if (fileId) {
       const cleanId = fileId.split(/[?#]/)[0];
-      return `https://drive.google.com/uc?export=view&id=${cleanId}`;
+      return `https://drive.google.com/thumbnail?id=${cleanId}&sz=w1200`;
+    }
+  }
+  if (url.includes("drive.google.com/uc")) {
+    const match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    if (match && match[1]) {
+      return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1200`;
     }
   }
   return url;

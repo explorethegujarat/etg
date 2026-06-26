@@ -162,7 +162,7 @@ function AdminPage() {
     if (useCustomImg && finalImg.includes("drive.google.com")) {
       const gdMatch = finalImg.match(/(?:file\/d\/|id=)([a-zA-Z0-9_-]+)/);
       if (gdMatch && gdMatch[1]) {
-        finalImg = `https://drive.google.com/uc?export=view&id=${gdMatch[1]}`;
+        finalImg = `https://drive.google.com/thumbnail?id=${gdMatch[1]}&sz=w1200`;
       }
     }
 
