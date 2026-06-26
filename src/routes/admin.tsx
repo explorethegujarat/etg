@@ -152,10 +152,18 @@ function AdminPage() {
       return;
     }
 
-    const finalImg = useCustomImg ? customImgUrl : selectedImg;
+    let finalImg = useCustomImg ? customImgUrl : selectedImg;
     if (!finalImg) {
       toast.error("Please provide or select an image.");
       return;
+    }
+
+    // Auto-convert Google Drive links to direct render URLs
+    if (useCustomImg && finalImg.includes("drive.google.com")) {
+      const gdMatch = finalImg.match(/(?:file\/d\/|id=)([a-zA-Z0-9_-]+)/);
+      if (gdMatch && gdMatch[1]) {
+        finalImg = `https://lh3.googleusercontent.com/u/0/d/${gdMatch[1]}`;
+      }
     }
 
     // Calculate reading time based on words (roughly 200 words per minute)
