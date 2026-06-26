@@ -1,4 +1,5 @@
 import girImg from "@/assets/dest-gir.jpeg";
+import { supabase } from "./supabase";
 import kutchImg from "@/assets/dest-kutch.jpg";
 import somnathImg from "@/assets/dest-somnath.jpg";
 import diuImg from "@/assets/dest-diu.jpg";
@@ -258,47 +259,113 @@ Experiencing the temple's daily cycle is spiritually uplifting:
   }
 ];
 
-export function getBlogPosts(): BlogPost[] {
-  if (typeof window === "undefined") return DEFAULT_POSTS;
-  
-  const saved = localStorage.getItem("gujarat_royal_tours_blogs");
-  if (!saved) {
-    localStorage.setItem("gujarat_royal_tours_blogs", JSON.stringify(DEFAULT_POSTS));
-    return DEFAULT_POSTS;
-  }
-  
+async function seedDefaultPosts() {
   try {
-    return JSON.parse(saved);
+    const { error } = await supabase
+      .from("blogs")
+      .insert(
+        DEFAULT_POSTS.map((post) => ({
+          id: post.id,
+          title: post.title,
+          excerpt: post.excerpt,
+          content: post.content,
+          img: post.img,
+          tag: post.tag,
+          date: post.date,
+          author: post.author,
+          readTime: post.readTime,
+        }))
+      );
+    if (error) {
+      console.error("Error seeding default posts:", error);
+    }
   } catch (e) {
-    console.error("Failed to parse blogs from local storage", e);
+    console.error("Failed to seed default posts:", e);
+  }
+}
+
+export async function getBlogPosts(): Promise<BlogPost[]> {
+  try {
+    const { data, error } = await supabase
+      .from("blogs")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Supabase fetch error, falling back to defaults:", error);
+      return DEFAULT_POSTS;
+    }
+
+    if (!data || data.length === 0) {
+      await seedDefaultPosts();
+      return DEFAULT_POSTS;
+    }
+
+    return data as BlogPost[];
+  } catch (e) {
+    console.error("Failed to fetch blogs from Supabase", e);
     return DEFAULT_POSTS;
   }
 }
 
-export function getBlogPostBySlug(slug: string): BlogPost | undefined {
-  const posts = getBlogPosts();
-  return posts.find((p) => p.id === slug);
-}
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+  try {
+    const { data, error } = await supabase
+      .from("blogs")
+      .select("*")
+      .eq("id", slug)
+      .maybeSingle();
 
-export function saveBlogPost(post: BlogPost): void {
-  if (typeof window === "undefined") return;
-  
-  const posts = getBlogPosts();
-  const index = posts.findIndex((p) => p.id === post.id);
-  
-  if (index >= 0) {
-    posts[index] = post;
-  } else {
-    posts.unshift(post); // Add new post to the top
+    if (error) {
+      console.error("Supabase fetch by slug error, falling back:", error);
+      return DEFAULT_POSTS.find((p) => p.id === slug);
+    }
+
+    if (!data) {
+      return DEFAULT_POSTS.find((p) => p.id === slug);
+    }
+
+    return data as BlogPost;
+  } catch (e) {
+    console.error("Failed to fetch blog by slug from Supabase", e);
+    return DEFAULT_POSTS.find((p) => p.id === slug);
   }
-  
-  localStorage.setItem("gujarat_royal_tours_blogs", JSON.stringify(posts));
 }
 
-export function deleteBlogPost(slug: string): void {
-  if (typeof window === "undefined") return;
-  
-  const posts = getBlogPosts();
-  const filtered = posts.filter((p) => p.id !== slug);
-  localStorage.setItem("gujarat_royal_tours_blogs", JSON.stringify(filtered));
+export async function saveBlogPost(post: BlogPost): Promise<void> {
+  try {
+    const { error } = await supabase
+      .from("blogs")
+      .upsert({
+        id: post.id,
+        title: post.title,
+        excerpt: post.excerpt,
+        content: post.content,
+        img: post.img,
+        tag: post.tag,
+        date: post.date,
+        author: post.author,
+        readTime: post.readTime,
+        created_at: new Date().toISOString(),
+      });
+
+    if (error) throw error;
+  } catch (e) {
+    console.error("Failed to save blog to Supabase", e);
+    throw e;
+  }
+}
+
+export async function deleteBlogPost(slug: string): Promise<void> {
+  try {
+    const { error } = await supabase
+      .from("blogs")
+      .delete()
+      .eq("id", slug);
+
+    if (error) throw error;
+  } catch (e) {
+    console.error("Failed to delete blog from Supabase", e);
+    throw e;
+  }
 }

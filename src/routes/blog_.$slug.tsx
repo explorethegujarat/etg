@@ -8,10 +8,10 @@ import { toast } from "sonner";
 
 export const Route = createFileRoute("/blog_/$slug")({
   head: ({ params }) => {
-    const post = getBlogPostBySlug(params.slug);
+    const post = DEFAULT_POSTS.find((p) => p.id === params.slug);
     return {
       meta: [
-        { title: post ? `${post.title} — Explore The Gujarat` : "Article Not Found" },
+        { title: post ? `${post.title} — Explore The Gujarat` : "Explore The Gujarat Journal" },
         { name: "description", content: post?.excerpt || "Read this article on Explore The Gujarat." },
         { property: "og:title", content: post?.title || "Explore The Gujarat Journal" },
         { property: "og:description", content: post?.excerpt || "Read this article on Explore The Gujarat." },
@@ -24,12 +24,18 @@ export const Route = createFileRoute("/blog_/$slug")({
 function BlogPostPage() {
   const { slug } = useParams({ from: "/blog_/$slug" });
   const [clientPost, setClientPost] = useState<BlogPost | undefined>(undefined);
+  const [dbRelatedPosts, setDbRelatedPosts] = useState<BlogPost[]>([]);
   const [isMounted, setIsMounted] = useState(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    setClientPost(getBlogPostBySlug(slug));
-    setIsMounted(true);
+    Promise.all([getBlogPostBySlug(slug), getBlogPosts()]).then(([postData, allPosts]) => {
+      setClientPost(postData);
+      setIsMounted(true);
+      if (postData) {
+        setDbRelatedPosts(allPosts.filter((p) => p.id !== postData.id).slice(0, 3));
+      }
+    });
   }, [slug]);
 
   // Check if it's one of the default posts to pre-render on the server
@@ -68,11 +74,9 @@ function BlogPostPage() {
     );
   }
 
-  // Get related posts (exclude current, take 3 from the same tag or random)
-  const allPosts = getBlogPosts();
-  const relatedPosts = allPosts
-    .filter((p) => p.id !== post!.id)
-    .slice(0, 3);
+  const relatedPosts = isMounted
+    ? dbRelatedPosts
+    : DEFAULT_POSTS.filter((p) => p.id !== slug).slice(0, 3);
 
   const handleCopyLink = () => {
     if (typeof window !== "undefined") {

@@ -58,7 +58,7 @@ function AdminPage() {
   // Load posts
   useEffect(() => {
     if (isAuthenticated) {
-      setPosts(getBlogPosts());
+      getBlogPosts().then(setPosts);
     }
   }, [isAuthenticated]);
 
@@ -175,18 +175,24 @@ function AdminPage() {
       readTime,
     };
 
-    saveBlogPost(newPost);
-    toast.success(editingPost ? "Article updated successfully!" : "Article created successfully!");
-    setPosts(getBlogPosts());
-    setIsModalOpen(false);
+    saveBlogPost(newPost).then(() => {
+      toast.success(editingPost ? "Article updated successfully!" : "Article created successfully!");
+      getBlogPosts().then(setPosts);
+      setIsModalOpen(false);
+    }).catch((err) => {
+      toast.error("Failed to save article: " + err.message);
+    });
   };
 
   // Handle Delete
   const handleDelete = (slug: string, title: string) => {
     if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
-      deleteBlogPost(slug);
-      toast.success("Article deleted.");
-      setPosts(getBlogPosts());
+      deleteBlogPost(slug).then(() => {
+        toast.success("Article deleted.");
+        getBlogPosts().then(setPosts);
+      }).catch((err) => {
+        toast.error("Failed to delete article: " + err.message);
+      });
     }
   };
 

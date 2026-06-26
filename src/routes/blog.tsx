@@ -24,8 +24,10 @@ function Page() {
   const [activeCategory, setActiveCategory] = useState("All");
 
   useEffect(() => {
-    setPosts(getBlogPosts());
-    setIsMounted(true);
+    getBlogPosts().then((data) => {
+      setPosts(data);
+      setIsMounted(true);
+    });
   }, []);
 
   // During SSR/initial hydration, use DEFAULT_POSTS. Once mounted, use the localStorage posts.
